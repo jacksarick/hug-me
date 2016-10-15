@@ -1,0 +1,22 @@
+{
+  "name": "hug-me",
+  "version": "1.0.0",
+  "description": "Do You Want To Hug Me?",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksarick/hug-me.git"
+  },
+  "author": "Jack Sarick and some other people",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacksarick/hug-me/issues"
+  },
+  "homepage": "https://github.com/jacksarick/hug-me#readme",
+  "dependencies": {
+    "electron": "^1.4.3"
+  }
+}
