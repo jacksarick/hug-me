@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jacksarick/hug-me#readme",
   "dependencies": {
-    "electron": "^1.4.3"
+    "electron": "^1.4.3",
+    "serialport": "^4.0.3"
   }
 }

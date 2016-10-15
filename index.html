@@ -2,14 +2,98 @@
 <html>
 <head>
 	<title>Hello</title>
+
+	<style type="text/css">
+		/* Basic CSS stylesheet from https://gist.github.com/jacksarick/9fab0439a0b5a043cf461f616195cd84 */
+
+		body {
+			margin: 0 auto;
+			max-width: 50em;
+			line-height: 1.5;
+			padding: 4em 1em;
+			color: #555;
+			font-family: "Helvetica", "Arial", sans-serif;
+			margin-top: 1em;
+			padding-top: 1em;
+		}
+
+		h1, h2, strong {
+			color: #333;
+		}
+
+		code, pre {
+			background: #eee;
+		}
+
+		code {
+			padding: 2px 4px;
+			vertical-align: text-bottom;
+		}
+
+		pre {
+			padding: 1em;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function Tag(x) {
+			if (x[0] == "#") {
+				this.$ = document.getElementById(x.slice(1));
+			}
+			if (x[0] == ".") {
+				this.$ = document.getElementsByClassName(x.slice(1))[0];
+			}
+
+			this.style = function(a, v) { this.$.style[a] = v; }
+			this.append = function(c) { this.$.innerHTML += c; }
+			this.show = function(s) { this.$.style.display = "block"; }
+			this.hide = function(s) { this.$.style.display = "none"; }
+			this.listen = function(a, f) { this.$.addEventListener(a, f, false); }
+
+			this.html = function(v) {
+				if (v != undefined){
+					this.$.innerHTML = v;
+				}
+
+				else {
+					return this.$.innerHTML;
+				}
+			}
+
+			this.value = function(v) {
+				if (v != undefined){
+					this.$.value = v;
+				}
+
+				else {
+					return this.$.value;
+				}
+			}
+		}
+
+		$ = function(name) { return new Tag(name); }
+	</script>
 </head>
 <body>
 <h1>Title here</h1>
+<h2 id="target"></h2>
 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<script type="text/javascript">
+		var SerialPort = require("serialport");
+		var port = new SerialPort("/dev/cu.wchusbserial1420", {
+			baudRate: 9600
+		});
+
+		var target = $("#target");
+		port.on('data', function (data) {
+			console.log(data);
+			target.html(data + []);
+		});
+	</script>
 </body>
 </html>
