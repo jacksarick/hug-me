@@ -4,6 +4,7 @@
   "description": "Do You Want To Hug Me?",
   "main": "main.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
