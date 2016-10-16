@@ -16,14 +16,12 @@ function start(port){
 
 var target = $("#target");
 function recieved(data){
-	// try {
-	state = (((data + []).split(" ").reduce((a, b) => a + b, 0)) > 0) + [];
-	// }
+	state = (((data + []).split(" ").reduce((a, b) => a + b, 0)) > 0);
 
-	// catch(err) {
-	target.html(state);
-	$.post("https://sarick.tech:3000", {function: "log-data", user: usersettings.user, pass: usersettings.pass, plush: 3, date: Math.floor(new Date() / 1000)}, function(data) {
-  		console.log(data)
-	});
-	// }
+	target.html(state + []);
+	if (state) {
+		$.post("https://sarick.tech:3000", {function: "log-data", user: usersettings.user, pass: usersettings.pass, plush: 3, date: Math.floor(new Date() / 1000)}, function(data) {
+			console.log(data)
+		});
+	}
 }
