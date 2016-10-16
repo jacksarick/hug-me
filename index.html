@@ -4,22 +4,87 @@
 		<meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 		<title>Do You Want To Hug Me Desktop App</title>
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body>
 		<div class="container">
-			<h1>Title here</h1>
-			<h2 id="target"></h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<ul class="nav nav-tabs" role="tablist">
+			  <li class="nav-item">
+			    <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" data-toggle="tab" href="#plushes" role="tab">Plushes</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" data-toggle="tab" href="#add" role="tab">Add a Plush</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
+			  </li>
+			</ul>
+			<div class="tab-content">
+			  <div class="tab-pane active" id="home" role="tabpanel">
+					<h1>Welcome back Matt!</h1>
+					<h2>Here's what's up.</h2>
+					<h2 id="target"></h2>
+					<canvas class="img-fluid" id="homeChart"></canvas>
+				</div>
+			  <div class="tab-pane" id="plushes" role="tabpanel">
+					<div class="card card-block card-outline-primary">
+						<div class="row">
+							<div class="col-sm-3">
+								<img class="img-fluid" src="img/octobiwan.jpg" alt="Octobiwan" />
+							</div>
+							<div class="col-sm-9">
+								<h2><b>Octobiwan Kenobi</b> the Octocat</h2>
+								<h3>Average of <b>7 Hugs</b> per hour</h3>
+								<ul class="list-unstyled">
+									<li>
+										69 hugs today
+									</li>
+									<li>
+										420 hugs this month
+									</li>
+									<li>
+										1738 hugs this year
+									</li>
+									<li>
+										12321 hugs since the beginning of time
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			  <div class="tab-pane" id="add" role="tabpanel">
+					<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> Looking for Bluetooth Devices
+
+				</div>
+			  <div class="tab-pane" id="settings" role="tabpanel">
+					<div class="row">
+						<div class="col-sm-1">
+							<input type="checkbox" id="enable-notifications" name="enable-notifications" class="toggle">
+						 	<label for="enable-notifications"></label>
+						</div>
+						<div class="col-sm-11">
+							<h2>Enable Notifications</h2>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<script src="jackQuery.js"></script>
+		<!--<script src="jackQuery.js"></script>-->
 		<script>
+      //window.$ = window.jQuery = require('./js/jquery.min.js');
+    </script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/Chart.min.js"></script>
+		<script>
+		/*
 			var serialjs = require('serialport-js');
 			serialjs.open(
 				'/dev/cu.HC-06-DevB', //Bluetooth
@@ -39,7 +104,54 @@
 				target.html(
 					(((data + []).split(" ").reduce((a, b) => a + b, 0)) > 0) + []
 				);
-			}
+			}*/
+
+			var ctx = $("#homeChart");
+
+			var data = {
+		    labels: ["January", "February", "March", "April", "May", "June", "July"],
+		    datasets: [
+	        {
+            label: "Octobiwan Kenobi Plush Hugs",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "#7039A0",
+            borderColor: "#7039A0",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#7039A0",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#7039A0",
+            pointHoverBorderColor: "#7039A0",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [65, 59, 80, 81, 56, 55, 40],
+            spanGaps: false,
+	        }
+		    ]
+			};
+
+			var options = {
+				options: {
+	        scales: {
+            xAxes: [{
+              position: 'bottom'
+            }]
+	        }
+		    }
+			};
+
+			var myLineChart = new Chart(ctx, {
+		    type: 'line',
+		    data: data,
+		    options: options
+			});
+
 		</script>
 	</body>
 </html>
