@@ -83,17 +83,8 @@
 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<script type="text/javascript">
-		var SerialPort = require("serialport");
-		var port = new SerialPort("/dev/cu.wchusbserial1420", {
-			baudRate: 9600
-		});
-
-		var target = $("#target");
-		port.on('data', function (data) {
-			console.log(data);
-			target.html(data + []);
-		});
+	<script>
+		require("./renderer.js");
 	</script>
 </body>
 </html>
