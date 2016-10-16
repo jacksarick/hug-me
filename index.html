@@ -78,13 +78,13 @@
 		</div>
 		<!--<script src="jackQuery.js"></script>-->
 		<script>
-      //window.$ = window.jQuery = require('./js/jquery.min.js');
+      window.$ = window.jQuery = require('./js/jquery.min.js');
     </script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/Chart.min.js"></script>
 		<script>
-		/*
+
 			var serialjs = require('serialport-js');
 			serialjs.open(
 				'/dev/cu.HC-06-DevB', //Bluetooth
@@ -104,7 +104,7 @@
 				target.html(
 					(((data + []).split(" ").reduce((a, b) => a + b, 0)) > 0) + []
 				);
-			}*/
+			}
 
 			var ctx = $("#homeChart");
 
