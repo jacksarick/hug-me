@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/jacksarick/hug-me.git"
   },
-  "author": "Jack Sarick and some other people",
+  "author": "Jack Sarick, Matthew Wang, Simon Guo",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jacksarick/hug-me/issues"
