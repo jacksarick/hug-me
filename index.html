@@ -84,7 +84,26 @@
 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	<script>
-		require("./renderer.js");
+		var serialjs = require('serialport-js');
+		serialjs.open(
+			'/dev/cu.HC-06-DevB', //Bluetooth
+			// '/dev/cu.wchusbserial1420', //USB
+			start,
+			'\n'
+		);
+
+		function start(port){
+			port.on('data',
+				recieved
+			);
+		}
+
+		var target = $("#target");
+		function recieved(data){
+			target.html(
+				(((data + []).split(" ").reduce((a, b) => a + b, 0)) > 0) + []
+			);
+		}
 	</script>
 </body>
 </html>

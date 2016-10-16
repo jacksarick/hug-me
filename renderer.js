@@ -1,8 +1,16 @@
-var SerialPort = require("serialport");
-// var port = new SerialPort("/dev/cu.wchusbserial1420", {
-// 	baudRate: 9600
-// });
+var serialjs = require('serialport-js');
+serialjs.open(
+	'/dev/cu.HC-06-DevB',
+	start,
+	'\n'
+);
 
-// port.on('data', function (data) {
-// 	console.log(data + []);
-// });
+function start(port){
+	port.on('data',
+		recieved
+	);
+}
+
+function recieved(data){
+	console.log(data);
+}   

@@ -19,6 +19,6 @@
   "homepage": "https://github.com/jacksarick/hug-me#readme",
   "dependencies": {
     "electron": "^1.4.3",
-    "serialport": "^4.0.3"
+    "serialport-js": "^0.2.1"
   }
 }
