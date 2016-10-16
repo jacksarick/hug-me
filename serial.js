@@ -2,10 +2,17 @@ var usersettings = require("./user-settings.js");
 var fs = require("fs");
 var serialjs = require('serialport-js');
 
-const port = 'cu.HC-06-DevB' //Bluetooth
-// const port = 'cu.wchusbserial1420' //USB
+const blu_port = 'cu.HC-06-DevB' //Bluetooth
+const usb_port = 'cu.wchusbserial1420' //USB
+const ports = [fs.readdirSync("/dev").indexOf(blu_port) > 0, fs.readdirSync("/dev").indexOf(usb_port) > 0]
 
-if(fs.readdirSync("/dev").indexOf(port) > 0) {
+if(ports[0] || ports[1]) {
+
+	port = blu_port;
+	if (!ports[0]){
+		port = usb_port;
+	}
+
 	serialjs.open(
 		port
 		start,
