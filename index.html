@@ -29,6 +29,20 @@
 			  <div class="tab-pane active" id="home" role="tabpanel">
 					<h1>Welcome back Matt!</h1>
 					<h2>Here's what's up.</h2>
+					<ul class="list-unstyled">
+						<li>
+							<span id="total-today"></span> hugs today
+						</li>
+						<li>
+							<span id="total-month"></span> hugs this month
+						</li>
+						<li>
+							<span id="total-year"></span> hugs this year
+						</li>
+						<li>
+							<span id="total-total"></span> hugs since the beginning of time
+						</li>
+					</ul>
 					<h2 id="target"></h2>
 					<canvas class="img-fluid" id="homeChart"></canvas>
 				</div>
@@ -82,55 +96,11 @@
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/Chart.min.js"></script>
+		<script src="data.js"></script>
 		<script>
 
-			require("./renderer.js");
+			//require("./renderer.js");
 
-			var ctx = $("#homeChart");
-
-			var data = {
-		    labels: ["January", "February", "March", "April", "May", "June", "July"],
-		    datasets: [
-	        {
-            label: "Octobiwan Kenobi Plush Hugs",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "#7039A0",
-            borderColor: "#7039A0",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "#7039A0",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "#7039A0",
-            pointHoverBorderColor: "#7039A0",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40],
-            spanGaps: false,
-	        }
-		    ]
-			};
-
-			var options = {
-				options: {
-	        scales: {
-            xAxes: [{
-              position: 'bottom'
-            }]
-	        }
-		    }
-			};
-
-			var myLineChart = new Chart(ctx, {
-		    type: 'line',
-		    data: data,
-		    options: options
-			});
 
 		</script>
 	</body>
