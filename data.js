@@ -35,47 +35,49 @@ function countPresses(presses){
     lifetime: lifetime
   }
 }
-var postData = {function: "get-data", user: usersettings.user, pass: usersettings.pass};
-$.post("https://sarick.tech:3000", postData, function(data) {
-    data = JSON.parse(data);
-    for (i = 0; i < data.length; i++){
-      temp = {
-        id: i,
-        plush_id :data[i]["plush_id"],
-        date: Number(data[i]["date"])
-      }
-      presses.push(temp);
-      if (contains(plushes, data[i]["plush_id"]) === false){
+function retrieve(){
+  var postData = {function: "get-data", user: usersettings.user, pass: usersettings.pass};
+  $.post("https://sarick.tech:3000", postData, function(data) {
+      data = JSON.parse(data);
+      for (i = 0; i < data.length; i++){
         temp = {
-          uid:i,
-          plush_id: data[i]["plush_id"],
-          name: data[i]["plush_name"]
-        };
-        plushes.push(temp);
-      }
-    }
-    totalPresses = countPresses(presses);
-    $("#total-today").html(totalPresses["daily"]);
-    $("#total-month").html(totalPresses["monthly"]);
-    $("#total-year").html(totalPresses["yearly"]);
-    $("#total-total").html(totalPresses["lifetime"]);
-
-    graph();
-
-    for (i = 0; i < plushes.length; i++){
-      plushName = plushes[i]["name"];
-      plushPresses = [];
-      for (j = 0; j < presses.length; j++){
-        if (presses[j]["plush_id"] = plushes[i]["plush_id"]){
-          plushPresses.push(presses[j]);
+          id: i,
+          plush_id :data[i]["plush_id"],
+          date: Number(data[i]["date"])
+        }
+        presses.push(temp);
+        if (contains(plushes, data[i]["plush_id"]) === false){
+          temp = {
+            uid:i,
+            plush_id: data[i]["plush_id"],
+            name: data[i]["plush_name"]
+          };
+          plushes.push(temp);
         }
       }
-      console.log(plushPresses);
-      temp = countPresses(plushPresses);
-      htmlString = '<div class="card card-block card-outline-primary"><div class="row"><div class="col-sm-3"><img class="img-fluid" src="img/android.jpg" alt="Android" /></div><div class="col-sm-9"><h2><b>' + plushName + '</b> the Android</h2><ul class="list-unstyled"><li>' + temp["daily"] + ' hugs today</li><li>' + temp["monthly"] + ' hugs this month</li><li>' + temp["yearly"] + ' hugs this year</li><li>' + temp["lifetime"] + ' hugs since the beginning of time</li></ul></div></div></div>';
-      $("#plushes").append(htmlString);
-    }
-});
+      totalPresses = countPresses(presses);
+      $("#total-today").html(totalPresses["daily"]);
+      $("#total-month").html(totalPresses["monthly"]);
+      $("#total-year").html(totalPresses["yearly"]);
+      $("#total-total").html(totalPresses["lifetime"]);
+
+      graph();
+
+      for (i = 0; i < plushes.length; i++){
+        plushName = plushes[i]["name"];
+        plushPresses = [];
+        for (j = 0; j < presses.length; j++){
+          if (presses[j]["plush_id"] = plushes[i]["plush_id"]){
+            plushPresses.push(presses[j]);
+          }
+        }
+        console.log(plushPresses);
+        temp = countPresses(plushPresses);
+        htmlString = '<div class="card card-block card-outline-primary"><div class="row"><div class="col-sm-3"><img class="img-fluid" src="img/android.jpg" alt="Android" /></div><div class="col-sm-9"><h2><b>' + plushName + '</b> the Android</h2><ul class="list-unstyled"><li>' + temp["daily"] + ' hugs today</li><li>' + temp["monthly"] + ' hugs this month</li><li>' + temp["yearly"] + ' hugs this year</li><li>' + temp["lifetime"] + ' hugs since the beginning of time</li></ul></div></div></div>';
+        $("#plushes").append(htmlString);
+      }
+  });
+}
 
 function graph(){
   var ctx = $("#homeChart");
@@ -124,3 +126,5 @@ function graph(){
     options: options
   });
 }
+
+retrieve();

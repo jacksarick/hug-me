@@ -32,9 +32,13 @@ if(ports[0] || ports[1]) {
 		state = (((data + []).split(" ").reduce((a, b) => a + b, 0)) > 0);
 
 		if (state) {
-			$.post("https://sarick.tech:3000", {function: "log-data", user: usersettings.user, pass: usersettings.pass, plush: 3, date: Math.floor(new Date() / 1000)}, function(data) {
+			$.post("https://sarick.tech:3000", {function: "log-data", user: usersettings.user, pass: usersettings.pass, plush: 3, date: new Date()}, function(data) {
 				console.log(data)
+				$("#plush-status").html("Being Hugged!")
 			});
+		}
+		else{
+			$("#plush-status").html("Inactive.")
 		}
 	}
 }
